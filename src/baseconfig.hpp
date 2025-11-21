@@ -39,14 +39,14 @@ class BaseConfig : public WifiConfigInterface,
   String _wifiDirectSSID = "";
   String _wifiDirectPASS = "";
   int _wifiConnectionTimeout = 30;
-  int _wifiPortalTimeout = 120;
+  int _wifiPortalTimeout = 600;
   bool _wifiScanAP = false;
 
   // OtaConfig
-  String _otaURL;
+  String _otaURL = "http://api.ckbrew.com/rest/public/";
 
   // PushConfig
-  String _targetHttpPost;
+  String _targetHttpPost = "http://api.ckbrew.com/rest/public/deviceData";
   String _header1HttpPost = "Content-Type: application/json";
   String _header2HttpPost;
   bool _tcpHttpPost = false;
