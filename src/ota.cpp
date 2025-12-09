@@ -139,7 +139,11 @@ bool OtaUpdate::checkFirmwareVersion() {
   WiFiClientSecure wifiSecure;
   HTTPClient http;
   String serverPath = _otaConfig->getOtaURL();
+#if defined(ESP32C3)
+  serverPath += "version32c3.json";
+#else
   serverPath += "version.json";
+#endif  
 
   // Your Domain name with URL path or IP address with path
   if (_otaConfig->isOtaSSL()) {
