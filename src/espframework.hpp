@@ -41,6 +41,12 @@ void espReset();
 
 #include "esp32c3/rom/rtc.h"
 #define ESP_RESET forcedReset
+#elif defined(ESP32C6)
+#include <FS.h>
+#include <LittleFS.h>
+
+#include "esp32c6/rom/rtc.h"
+#define ESP_RESET forcedReset
 #elif defined(ESP32S2)
 #include <FS.h>
 #include <LittleFS.h>

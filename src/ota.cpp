@@ -55,6 +55,8 @@ OtaUpdate::OtaUpdate(OtaConfigInterface *cfg, String ver, String fileName) {
     _fileName = "firmware32s2.bin";
 #elif defined(ESP32C3)
     _fileName = "firmware32c3.bin";
+#elif defined(ESP32C6)
+    _fileName = "firmware32c6.bin";
 #elif defined(ESP32)
     _fileName = "firmware32.bin";
 #else
@@ -141,6 +143,8 @@ bool OtaUpdate::checkFirmwareVersion() {
   String serverPath = _otaConfig->getOtaURL();
 #if defined(ESP32C3)
   serverPath += "version32c3.json";
+#elif defined(ESP32C6)
+  serverPath += "version32c6.json";
 #else
   serverPath += "version.json";
 #endif  

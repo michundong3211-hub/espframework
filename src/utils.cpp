@@ -43,6 +43,8 @@ const char* platform = "ESP32S3";
 const char* platform = "ESP32S2";
 #elif defined(ESP32C3)
 const char* platform = "ESP32C3";
+#elif defined(ESP32C6)
+const char* platform = "ESP32C6";
 #elif defined(ESP32)
 const char* platform = "ESP32";
 #elif defined(ESP8266)
@@ -168,6 +170,9 @@ void detectChipRevision() {
       break;
     case CHIP_ESP32C3:
       chipModel = "ESP32C3";
+      break;
+    case CHIP_ESP32C6:
+      chipModel = "ESP32C6";
       break;
     case CHIP_ESP32H2:
     default:
