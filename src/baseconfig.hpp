@@ -43,7 +43,8 @@ class BaseConfig : public WifiConfigInterface,
   bool _wifiScanAP = false;
 
   // OtaConfig
-  String _otaURL = "http://api.ckbrew.com/rest/public/";
+  // String _otaURL = "http://api.ckbrew.com/rest/public/";
+  String _otaURL = "http://api.ckbrew.com/rest/public-8.5/";
 
   // PushConfig
   String _targetHttpPost = "http://api.ckbrew.com/rest/public/deviceData";
