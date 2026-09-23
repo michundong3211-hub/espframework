@@ -24,6 +24,11 @@ SOFTWARE.
 #ifndef SRC_BASECONFIG_HPP_
 #define SRC_BASECONFIG_HPP_
 
+// OTA 升级地址: 编译时可用 -D CFG_OTAURL=\"...\" 覆盖
+#ifndef CFG_OTAURL
+#define CFG_OTAURL "http://api.ckbrew.com/rest/public-8.5/"
+#endif
+
 #include <espframework.hpp>
 #include <interface.hpp>
 
@@ -42,9 +47,8 @@ class BaseConfig : public WifiConfigInterface,
   int _wifiPortalTimeout = 600;
   bool _wifiScanAP = false;
 
-  // OtaConfig
-  // String _otaURL = "http://api.ckbrew.com/rest/public/";
-  String _otaURL = "http://api.ckbrew.com/rest/public-8.5/";
+  // OtaConfig (地址来自 CFG_OTAURL, 编译时在 platformio.ini 指定)
+  String _otaURL = CFG_OTAURL;
 
   // PushConfig
   String _targetHttpPost = "http://api.ckbrew.com/rest/public/deviceData";

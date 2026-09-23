@@ -38,7 +38,17 @@ SOFTWARE.
 #include <utils.hpp>
 #include <wificonnection.hpp>
 
+// WiFi 发射功率: 定义 ESPFWK_WIFI_TX_POWER_8_5 时用 8.5dBm, 否则默认 13dBm
+#ifdef ESPFWK_REDUCE_WIFI_POWER
+#if defined(ESPFWK_WIFI_TX_POWER_8_5)
+#define ESPFWK_WIFI_TX_POWER WIFI_POWER_8_5dBm
+#else
+#define ESPFWK_WIFI_TX_POWER WIFI_POWER_13dBm  // Required for ESP32C3 Mini
+#endif
+#endif
+
 const int NTP_PACKET_SIZE =
+
     48;  // NTP time stamp is in the first 48 bytes of the message
 
 const char *resetFilename = "/reset.dat";
@@ -165,7 +175,7 @@ void WifiConnection::startAP(wifi_mode_t _mode) {
 
 #ifdef ESPFWK_REDUCE_WIFI_POWER
   Log.notice(F("WIFI: Reducing wifi power for c3 chip." CR));
-  WiFi.setTxPower(WIFI_POWER_13dBm);  // Required for ESP32C3 Mini
+  WiFi.setTxPower(ESPFWK_WIFI_TX_POWER);
 #endif
 
   Log.notice(F("WIFI: Starting dns server." CR));
@@ -241,7 +251,7 @@ void WifiConnection::connectAsync(String ssid, String pass, wifi_mode_t mode) {
 
 #ifdef ESPFWK_REDUCE_WIFI_POWER
   Log.notice(F("WIFI: Reducing wifi power for c3 chip." CR));
-  WiFi.setTxPower(WIFI_POWER_13dBm);  // Required for ESP32C3 Mini
+  WiFi.setTxPower(ESPFWK_WIFI_TX_POWER);
 #endif
   if (_userSSID.length()) {
     Log.notice(F("WIFI: Connecting to wifi using hardcoded settings %s." CR),

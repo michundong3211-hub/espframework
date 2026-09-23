@@ -9,3 +9,4 @@ html/*
 /partitions.csv
 /output.map
 .DS_Store
+.idea/
